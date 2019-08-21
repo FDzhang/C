@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int main()
+int main(){ 
 	char line[80];
 	FILE *in = fopen("spooky.csv","r");
 	FILE *file1 = fopen("ufos.csv","w") ;
@@ -11,7 +11,7 @@ int main()
 	
 	while(fscanf(in,"%79[^\n]\n", line) == 1) {
 		if (strstr (line, "UFO"))
-			fprintf(filel, "%s\n", line) ;
+			fprintf(file1, "%s\n", line) ;
 		else if (strstr(line, "Disappearance"))
 			fprintf(file2,"%s\n",line) ;
 		else
