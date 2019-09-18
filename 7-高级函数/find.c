@@ -14,14 +14,13 @@ char *ADS[] = {
 
 
 
-void find(){
+void find(int (*match)(char*)){
 	int i;
 	puts("Search results: ");
 	puts("-----------------------");
 	
 	for(int i=0;i<NUM_ADS;i++){
-		if(strstr(ADS[i],"sports")
-		&& !strstr(ADS[i],"bieber")){
+		if(match(ADS[i])){
 			printf("%s\n",ADS[i]);
 		}
 		
@@ -43,6 +42,17 @@ int arts_theater_or_dinning(char *s){
 }
 
 int main(){
-	find(); 
+	find(sports_no_bieber);
+	find(sports_or_workout);
+	find(ne_theater);
+	find(arts_theater_or_dinning);
 	return 0;
 }
+
+
+
+
+
+
+
+
