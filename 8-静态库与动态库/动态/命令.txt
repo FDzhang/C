@@ -1,0 +1,22 @@
+gcc -I./includes -c hfcal.c -o hfcal.o       // -c 表示创建目标文件，但不要连接它
+gcc -I./includes -c elliptical.c -o elliptical.o     // -I 告诉gcc头文件在哪里
+ar -rcs ./libs/libhfcal.a hfcal.o      //存档保存在./libs目录中
+gcc elliptical.o -L./libs -lhfcal -o elliptical   //-L 告诉gcc库保存在哪里
+
+
+动态库
+// -fPIC 它告诉gcc你想创建位置无关代码 windos可以不需要该标志
+gcc -I./includes -fPIC -c hfcal.c -o hfcal.o     
+// Windows上的MinGw  创建动态库
+gcc -shared hfcal.o -o c:\my_libs\hfcal.dll
+gcc -shared hfcal.o -o ./hfcal.dll
+//使用动态库
+gcc -I./includes -c elliptical.c -o elliptical.o
+gcc elliptical.o -L/my_libs -lhfcal -o elliptical
+gcc elliptical.o -L./ -lhfcal -o elliptical
+
+PATH="%PATH%:C:\libs"
+
+gcc -I./includes -fPIC -c hfcal_UK.c -o hfcal.o
+gcc -shared hfcal.o -o ./libs/hfcal.dll
+gcc -shared hfcal.o -o ./hfcal.dll    //
